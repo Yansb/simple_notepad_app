@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/create_edit_note.dart';
+import 'package:notes/shared/widgets/customButton_widget.dart';
 import 'package:notes/shared/widgets/noteCard_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -39,20 +40,20 @@ class _HomePageState extends State<HomePage> {
                     setState(() {});
                   }
                 },
-              )
+              ),
+            CustomButton(
+              onPressed: () async {
+                final description =
+                    await Navigator.pushNamed(context, '/create-note');
+                if (description != null) {
+                  notes.add(description as String);
+                  setState(() {});
+                }
+              },
+              label: "Criar nota",
+            )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final description =
-              await Navigator.pushNamed(context, '/create-note');
-          if (description != null) {
-            notes.add(description as String);
-            setState(() {});
-          }
-        },
-        child: Icon(Icons.add),
       ),
     );
   }
