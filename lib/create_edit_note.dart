@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notes/shared/widgets/customButton_widget.dart';
+import 'package:notes/shared/widgets/textField_widget.dart';
 
 class CreateNotePage extends StatefulWidget {
   const CreateNotePage({Key? key}) : super(key: key);
@@ -45,14 +47,13 @@ class _CreateNotePageState extends State<CreateNotePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: textController,
-              maxLines: null,
+            TextFieldWidget(
               onChanged: (value) {
                 description = value;
                 setState(() {});
               },
-              decoration: InputDecoration(labelText: "Descrição"),
+              labelText: "Descrição",
+              controller: textController,
             ),
             SizedBox(
               height: 32,
@@ -61,16 +62,14 @@ class _CreateNotePageState extends State<CreateNotePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: 200,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context, description);
-                        },
-                        child: Text("Salvar")),
+                  CustomButton(
+                    label: "Salvar",
+                    onPressed: () {
+                      Navigator.pop(context, description);
+                    },
                   ),
                 ],
-              )
+              ),
           ],
         ),
       ),
