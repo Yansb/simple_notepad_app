@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/create_edit_note.dart';
+import 'package:notes/login/models/user_model.dart';
 import 'package:notes/shared/widgets/customButton_widget.dart';
 import 'package:notes/shared/widgets/noteCard_widget.dart';
 
@@ -15,6 +16,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final UserModel user =
+        ModalRoute.of(context)!.settings.arguments as UserModel;
     return Scaffold(
       appBar: AppBar(
         title: Text("NOTES"),
@@ -23,6 +26,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Text("Olá ${user.name!}, crie novas notas clickando no botão"),
             for (var i = 0; i < notes.length; i++)
               NoteCard(
                 title: notes[i],
